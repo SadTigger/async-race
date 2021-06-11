@@ -58,6 +58,7 @@ module.exports = ({ develop }) => ({
   plugins: [
     new HtmlWebpackPlugin({
       // title: 'Demo webpack'
+      favicon: './public/favicon.ico',
       template: './src/index.html'
     }),
     new CopyPlugin({
