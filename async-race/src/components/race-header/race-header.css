@@ -1,0 +1,17 @@
+.race-header {
+  margin-top: 10px;
+  margin-left: 20px;
+  width: 380px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.race-header span {
+  font-size: 18px;
+  font-weight: 900;
+  color: yellow;
+  display: flex;
+  justify-content: center;
+}

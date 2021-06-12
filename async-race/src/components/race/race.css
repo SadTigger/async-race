@@ -1,0 +1,7 @@
+.race {
+  height: 180px;
+  border: 1px dotted white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

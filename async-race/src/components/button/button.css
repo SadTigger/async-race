@@ -1,0 +1,36 @@
+.button {
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  font-weight: 900;
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing: 1.25px;
+  text-transform: uppercase;
+}
+
+
+.navigation-button {
+  width: 220px;
+  height: 25px;
+  background-color: #4CAF50;
+  text-align: center;
+}
+
+.triforce-button {
+  width: 180px;
+  height: 25px;
+  background-color: #4196af;
+}
+
+.race-control-button {
+  width: 180px;
+  height: 25px;
+  background-color: #4CAF50;
+}
+
+.generate-button {
+  width: 250px;
+  height: 25px;
+  background-color: #4196af;
+}

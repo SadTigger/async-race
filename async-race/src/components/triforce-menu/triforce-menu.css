@@ -1,0 +1,10 @@
+.triforce-menu {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 500px;
+}
+
+.triforce-menu input[type="text"] {
+  width: 260px;
+}

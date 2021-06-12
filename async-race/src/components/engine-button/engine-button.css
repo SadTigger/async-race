@@ -1,0 +1,15 @@
+.engine-button.active {
+  width: 35px;
+  height: 35px;
+  background: none;
+  border: 1px solid yellow;
+  color: yellow;
+}
+
+.engine-button {
+  width: 35px;
+  height: 35px;
+  background: none;
+  border: 1px solid gray;
+  color: gray;
+}
