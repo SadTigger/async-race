@@ -1,4 +1,5 @@
 import { BaseComponent } from '../base-component';
+import './page.css';
 
 export class Page extends BaseComponent {
   constructor() {

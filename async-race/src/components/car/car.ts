@@ -3,15 +3,26 @@ import { BaseComponent } from '../base-component';
 import './car.css';
 
 export class Car extends BaseComponent {
+  private carName: string;
+
   private readonly carImage: CarImage;
 
-  constructor(color: string) {
+  constructor(name: string, color: string) {
     super('div', ['car']);
-    this.carImage = new CarImage(color);
-    this.getCarImage();
+    this.carName = name;
+    this.carImage = new CarImage('120.0pt', '64.0pt', color);
+    this.getCarImageTemplate();
   }
 
-  getCarImage(): void {
+  getCarImageTemplate(): void {
     this.element.innerHTML = this.carImage.element.outerHTML;
+  }
+
+  getImage(): string {
+    return this.element.outerHTML;
+  }
+
+  getCarName(): string {
+    return this.carName;
   }
 }

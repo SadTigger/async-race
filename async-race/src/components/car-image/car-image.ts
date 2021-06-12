@@ -2,17 +2,17 @@ import { BaseComponent } from '../base-component';
 import './car-image.css';
 
 export class CarImage extends BaseComponent {
-  constructor(color: string) {
+  constructor(width: string, height: string, color: string) {
     super('div', ['car-image']);
-    this.element.innerHTML = CarImage.getTemplate(color);
+    this.element.innerHTML = CarImage.getTemplate(width, height, color);
   }
 
-  static getTemplate(color = '#ffffff'): string {
+  static getTemplate(width = '120.0pt', height = '64.0pt', color = '#ffffff'): string {
     return `
     <?xml version="1.0" standalone="no"?>
       <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
     <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
-      width="120.000000pt" height="64.000000pt" viewBox="0 0 1280.000000 640.000000"
+      width=${width} height=${height} viewBox="0 0 1280.000000 640.000000"
       preserveAspectRatio="xMidYMid meet">
     <metadata>
       Created by potrace 1.15, written by Peter Selinger 2001-2017

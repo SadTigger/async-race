@@ -9,6 +9,7 @@ import { RaceControls } from '../../components/race-controls/race-controls';
 import { Race } from '../../components/race/race';
 import { TriforceMenu } from '../../components/triforce-menu/triforce-menu';
 import { GarageTemplate } from '../../components/garage-template/garage-template';
+import { Car } from '../../components/car/car';
 
 export class Garage extends BaseComponent {
   private readonly page: Page;
@@ -65,6 +66,7 @@ export class Garage extends BaseComponent {
     this.toGarageButton = new Button('to garage', 'navigation-button');
     this.toWinnersButton = new Button('to winners', 'navigation-button');
     this.raceButton = new Button('race', 'race-control-button');
+    this.raceButton.element.addEventListener('click', () => console.log('click'));
     this.resetButton = new Button('reset', 'race-control-button');
     this.generateCarsButton = new Button('generate cars', 'generate-button');
     this.element.appendChild(this.page.element);
@@ -75,5 +77,9 @@ export class Garage extends BaseComponent {
     this.updateCar = new TriforceMenu('text', 'update-car', 'update', 'triforce-button');
     this.garageControls.addTriforces([this.createCar, this.updateCar]);
     this.raceControls.addButtons([this.raceButton, this.resetButton, this.generateCarsButton]);
+  }
+
+  getCars(): Car[] {
+    return [this.race1.getCar(), this.race2.getCar(), this.race3.getCar(), this.race4.getCar()];
   }
 }

@@ -13,14 +13,17 @@ export class Race extends BaseComponent {
 
   constructor(carName: string, carColor: string, id: number) {
     super('div', ['race']);
-    this.car = new Car(carColor);
-    this.raceHeader = new RaceHeader();
+    this.car = new Car(carName, carColor);
+    this.raceHeader = new RaceHeader(carName);
     this.carControls = new CarControls();
     this.element.appendChild(this.raceHeader.element);
     this.element.appendChild(this.carControls.element);
     this.element.appendChild(this.car.element);
-    this.raceHeader.addTemplate(carName);
     this.carControls.addTemplate();
+  }
+
+  getCar(): Car {
+    return this.car;
   }
 
   // TODO

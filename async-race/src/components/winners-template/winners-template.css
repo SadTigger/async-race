@@ -1,0 +1,20 @@
+.winners-template {
+  height: 1200px;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-between; */
+  background-color: black;
+}
+
+.view-title {
+  font-size: 40px;
+  color: #fff;
+  font-weight: 700;
+}
+
+.pagination {
+  margin-top: 10px;
+  font-size: 30px;
+  color: #fff;
+  font-weight: 700;
+}
