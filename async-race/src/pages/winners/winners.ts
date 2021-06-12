@@ -1,12 +1,12 @@
 import { BaseComponent } from '../../components/base-component';
 import { Button } from '../../components/button/button';
-import { Car } from '../../components/car/car';
-import { HeaderMenu } from '../../components/header-menu/header-menu';
-import { Navigation } from '../../components/navigation/navigation';
+import { Car } from '../../components/car-components/car/car';
+import { HeaderMenu } from '../../components/header-components/header-menu/header-menu';
+import { Navigation } from '../../components/header-components/navigation/navigation';
 import { Page } from '../../components/page/page';
-import { Winner } from '../../components/winner/winner';
-import { WinnersContainer } from '../../components/winners-container/winners-container';
-import { WinnersTemplate } from '../../components/winners-template/winners-template';
+import { Winner } from '../../components/winners-components/winner/winner';
+import { WinnersContainer } from '../../components/winners-components/winners-container/winners-container';
+import { WinnersTemplate } from '../../components/winners-components/winners-template/winners-template';
 
 export class Winners extends BaseComponent {
   private readonly page: Page;

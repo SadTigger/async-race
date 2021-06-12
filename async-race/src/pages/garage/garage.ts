@@ -1,15 +1,15 @@
-import { RacesContainer } from '../../components/races-container/races-container';
 import { BaseComponent } from '../../components/base-component';
 import { Button } from '../../components/button/button';
-import { GarageControls } from '../../components/garage-controls/garage-controls';
-import { HeaderMenu } from '../../components/header-menu/header-menu';
-import { Navigation } from '../../components/navigation/navigation';
 import { Page } from '../../components/page/page';
-import { RaceControls } from '../../components/race-controls/race-controls';
-import { Race } from '../../components/race/race';
-import { TriforceMenu } from '../../components/triforce-menu/triforce-menu';
-import { GarageTemplate } from '../../components/garage-template/garage-template';
-import { Car } from '../../components/car/car';
+import { TriforceMenu } from '../../components/garage-components/triforce-menu/triforce-menu';
+import { GarageTemplate } from '../../components/garage-components/garage-template/garage-template';
+import { Car } from '../../components/car-components/car/car';
+import { GarageControls } from '../../components/garage-components/garage-controls/garage-controls';
+import { RaceControls } from '../../components/race-components/race-controls/race-controls';
+import { RacesContainer } from '../../components/race-components/races-container/races-container';
+import { Race } from '../../components/race-components/race/race';
+import { HeaderMenu } from '../../components/header-components/header-menu/header-menu';
+import { Navigation } from '../../components/header-components/navigation/navigation';
 
 export class Garage extends BaseComponent {
   private readonly page: Page;
