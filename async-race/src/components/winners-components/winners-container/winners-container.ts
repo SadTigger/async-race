@@ -12,7 +12,6 @@ export class WinnersContainer extends BaseComponent {
   }
 
   static getTemplate(): string {
-    // id: number, carId: number, carName: string, numberOfWins: number, bestTime: string
     return `
     <tr class="table-header">
       <th>Number</th>
@@ -23,13 +22,11 @@ export class WinnersContainer extends BaseComponent {
     </tr>`;
   }
 
-  addWinners(winners: Winner[]): void {
-    winners.forEach((winner) => this.element.appendChild(winner.element));
+  addWinners(winners: Promise<Winner[]>[]): void {
+    winners.forEach(async (winner) => (await winner).forEach(async (w) => this.element.appendChild(w.element)));
   }
 
   removeWinner(id: string): void {
-    // console.log('this.element', this.element);
-    // console.log('this.element.children', this.element.children);
     const parentNode = this.element;
     parentNode.removeChild(parentNode.childNodes[parseInt(id, DECIMAL_RADIX) + THE_ONE]);
   }

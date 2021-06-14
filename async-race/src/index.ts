@@ -9,6 +9,6 @@ window.onload = () => {
     throw new Error('App root element not found');
   } else {
     const app = new App(appElement);
-    // app.run();
+    app.run();
   }
 };

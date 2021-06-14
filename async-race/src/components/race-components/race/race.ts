@@ -1,3 +1,4 @@
+import { CarModel } from '../../../models/car-model';
 import { BaseComponent } from '../../base-component';
 import { CarControls } from '../../car-components/car-controls/car-controls';
 import { Car } from '../../car-components/car/car';
@@ -11,10 +12,10 @@ export class Race extends BaseComponent {
 
   private carControls: CarControls;
 
-  constructor(carName: string, carColor: string, id: number) {
-    super('div', ['race']);
-    this.car = new Car(carName, carColor);
-    this.raceHeader = new RaceHeader(carName);
+  constructor({ name, color, id }: CarModel) { // carName: string, carColor: string, id: string
+    super('div', ['race'], [{ name: 'id', value: `${id}` }]);
+    this.car = new Car(name, color, id);
+    this.raceHeader = new RaceHeader(name); // , id
     this.carControls = new CarControls();
     this.element.appendChild(this.raceHeader.element);
     this.element.appendChild(this.carControls.element);
@@ -24,6 +25,10 @@ export class Race extends BaseComponent {
 
   getCar(): Car {
     return this.car;
+  }
+
+  getCarImage(): string {
+    return this.car.getImage();
   }
 
   // TODO
