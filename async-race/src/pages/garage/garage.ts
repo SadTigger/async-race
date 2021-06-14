@@ -5,15 +5,14 @@ import { Button } from '../../components/button/button';
 import { Page } from '../../components/page/page';
 import { TriforceMenu } from '../../components/garage-components/triforce-menu/triforce-menu';
 import { GarageTemplate } from '../../components/garage-components/garage-template/garage-template';
-// import { Car } from '../../components/car-components/car/car';
+import { Car } from '../../components/car-components/car/car';
 import { GarageControls } from '../../components/garage-components/garage-controls/garage-controls';
 import { RaceControls } from '../../components/race-components/race-controls/race-controls';
 import { RacesContainer } from '../../components/race-components/races-container/races-container';
 import { Race } from '../../components/race-components/race/race';
 import { HeaderMenu } from '../../components/header-components/header-menu/header-menu';
 import { Navigation } from '../../components/header-components/navigation/navigation';
-import { getCar, getCars } from '../../api';
-import { Car } from '../../components/car-components/car/car';
+import { getCars } from '../../api';
 
 export class Garage extends BaseComponent {
   private readonly page: Page;
@@ -85,19 +84,16 @@ export class Garage extends BaseComponent {
     return cars;
   }
 
-  async getCarToRace(): Promise<Race[]> {
+  async getCarToRace(): Promise<Race[]> { //
     const hangar: Race[] = [];
     const garage = this.getAllCars();
-    const promises = [];
-    const carsInGarage = (await garage).count;
-    for (let i = 1; i <= Number(carsInGarage); i++) {
-      promises.push(getCar(i));
-    }
+    const promises: CarModel[] = [];
+    (await garage).items.forEach((car) => promises.push(car));
     const temp: CarModel[] = await Promise.all(promises);
-    for (let i = 0; i < temp.length; i++) {
-      const raceItem = new Race(temp[i]);
+    temp.forEach((item) => {
+      const raceItem = new Race(item);
       hangar.push(raceItem);
-    }
+    });
     return hangar;
   }
 

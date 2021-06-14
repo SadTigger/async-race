@@ -1,4 +1,6 @@
+import { CarModel } from './car-model';
+
 export interface GarageModel {
-  items: number;
+  items: CarModel[];
   count: string | null;
 }

@@ -4,7 +4,7 @@ import './winner.css';
 export class Winner extends BaseComponent {
   constructor(id: number, carImage: string, carName: string, numberOfWins: number, bestTime: number) {
     super('tr', ['winner'], [{
-      name: 'id', value: `${id}`,
+      name: 'id', value: `winner-${id}`,
     }]);
     this.element.innerHTML = Winner.getTemplate(id, carImage, carName, numberOfWins, bestTime);
   }

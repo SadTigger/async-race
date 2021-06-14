@@ -8,7 +8,7 @@ export class Car extends BaseComponent {
   public carImage: CarImage;
 
   constructor(name: string, color: string, id: string) {
-    super('div', ['car'], [{ name: 'id', value: `${id}` }]);
+    super('div', ['car'], [{ name: 'id', value: `car-${id}` }]);
     this.carName = name;
     this.carImage = new CarImage('120.0pt', '64.0pt', color);
     this.getCarImageTemplate();

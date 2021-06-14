@@ -12,10 +12,10 @@ export class Race extends BaseComponent {
 
   private carControls: CarControls;
 
-  constructor({ name, color, id }: CarModel) { // carName: string, carColor: string, id: string
-    super('div', ['race'], [{ name: 'id', value: `${id}` }]);
+  constructor({ name, color, id }: CarModel) {
+    super('div', ['race'], [{ name: 'id', value: `race-${id}` }]);
     this.car = new Car(name, color, id);
-    this.raceHeader = new RaceHeader(name); // , id
+    this.raceHeader = new RaceHeader(name, id);
     this.carControls = new CarControls();
     this.element.appendChild(this.raceHeader.element);
     this.element.appendChild(this.carControls.element);

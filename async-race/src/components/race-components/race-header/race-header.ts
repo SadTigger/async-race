@@ -8,13 +8,11 @@ export class RaceHeader extends BaseComponent {
 
   private removeCarButton: RemoveRaceButton;
 
-  // private span: HTMLElement;
 
-  constructor(text: string) { // , id: string
+  constructor(text: string, id: string) {
     super('div', ['race-header']);
-    // this.span = new HTMLElement();
     this.selectCarButton = new RaceButton('select');
-    this.removeCarButton = new RemoveRaceButton('remove'); // , id
+    this.removeCarButton = new RemoveRaceButton('remove', id);
     this.element.appendChild(this.selectCarButton.element);
     this.element.appendChild(this.removeCarButton.element);
     this.element.appendChild(RaceHeader.getCarNameElement(text));
