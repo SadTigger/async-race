@@ -8,7 +8,6 @@ export class RaceHeader extends BaseComponent {
 
   private removeCarButton: RemoveRaceButton;
 
-
   constructor(text: string, id: string) {
     super('div', ['race-header']);
     this.selectCarButton = new RaceButton('select');
