@@ -12,7 +12,7 @@ export class Race extends BaseComponent {
 
   private carControls: CarControls;
 
-  constructor({ name, color, id }: CarModel) {
+  constructor({ name, color }: CarModel, id: string) {
     super('div', ['race'], [{ name: 'id', value: `race-${id}` }]);
     this.car = new Car(name, color, id);
     this.raceHeader = new RaceHeader(name, id);

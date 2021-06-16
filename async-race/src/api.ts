@@ -11,6 +11,19 @@ const garage = `${base}/garage`;
 const winners = `${base}/winners`;
 const engine = `${base}/engine`;
 
+// : Promise<CarModel>
+export const createCar = async (body: CarModel): Promise<CarModel> => { //
+  const response = await fetch(`${garage}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(body),
+  });
+  const car: CarModel = await response.json();
+  return car;
+};
+
 export const getCars = async (page: number, limit = 7): Promise<GarageModel> => {
   const response = await fetch(`${garage}?_page=${page}&_limit=${limit}`);
   const items: CarModel[] = await response.json();

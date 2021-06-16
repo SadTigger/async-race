@@ -9,10 +9,9 @@ import { Car } from '../../components/car-components/car/car';
 import { GarageControls } from '../../components/garage-components/garage-controls/garage-controls';
 import { RaceControls } from '../../components/race-components/race-controls/race-controls';
 import { RacesContainer } from '../../components/race-components/races-container/races-container';
-// import { Race } from '../../components/race-components/race/race';
 import { HeaderMenu } from '../../components/header-components/header-menu/header-menu';
 import { Navigation } from '../../components/header-components/navigation/navigation';
-import { getCars } from '../../api';
+import { createCar, getCars } from '../../api';
 
 export class Garage extends BaseComponent {
   private readonly page: Page;
@@ -43,13 +42,15 @@ export class Garage extends BaseComponent {
 
   private readonly raceContainer: RacesContainer;
 
-  // private readonly races: Promise<GarageModel>;
-
   private car!: CarModel;
 
-  allCars: GarageModel | undefined;
+  private readonly garage: Promise<GarageModel>;
 
-  garage: Promise<GarageModel>;
+  private readonly createCarButton: Button;
+
+  private readonly updateCarButton: Button;
+
+  allCars: GarageModel | undefined;
 
   constructor() {
     super();
@@ -74,7 +75,24 @@ export class Garage extends BaseComponent {
     this.headerMenu.addContents([this.navigation.element, this.garageControls.element, this.raceControls.element]);
     this.navigation.addButtons([this.toGarageButton, this.toWinnersButton]);
     this.createCar = new TriforceMenu('text', 'create-car', 'create', 'triforce-button');
+    this.createCarButton = this.createCar.getButton();
+    this.createCarButton.element.addEventListener('click', (e) => {
+      e.preventDefault();
+      const carName: HTMLInputElement | null = document.querySelector('#create');
+      const carColor: HTMLInputElement | null = document.querySelector('#colorpicker-create');
+      if (carName && carColor) {
+        if (carName.value === '') return;
+        // console.log(carName.value);
+        // console.log(carColor.value);
+        createCar({ name: carName.value, color: carColor.value });
+      }
+    });
     this.updateCar = new TriforceMenu('text', 'update-car', 'update', 'triforce-button');
+    this.updateCarButton = this.updateCar.getButton();
+    this.updateCarButton.element.addEventListener('click', (e) => {
+      e.preventDefault();
+      // console.log('update in garage');
+    });
     this.garageControls.addTriforces([this.createCar, this.updateCar]);
     this.raceControls.addButtons([this.raceButton, this.resetButton, this.generateCarsButton]);
   }
