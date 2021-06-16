@@ -12,6 +12,7 @@ import { RacesContainer } from '../../components/race-components/races-container
 import { HeaderMenu } from '../../components/header-components/header-menu/header-menu';
 import { Navigation } from '../../components/header-components/navigation/navigation';
 import { createCar, getCars } from '../../api';
+import { randomCarName, randomColor } from '../../utils';
 
 export class Garage extends BaseComponent {
   private readonly page: Page;
@@ -70,6 +71,11 @@ export class Garage extends BaseComponent {
     this.raceButton = new Button('race', 'race-control-button');
     this.resetButton = new Button('reset', 'race-control-button');
     this.generateCarsButton = new Button('generate cars', 'generate-button');
+    this.generateCarsButton.element.addEventListener('click', () => {
+      for (let i = 0; i < 100; i++) {
+        createCar({ name: randomCarName(), color: randomColor() });
+      }
+    });
     this.element.appendChild(this.page.element);
     this.page.addToPage([this.headerMenu.element, this.garageTemplate.element]);
     this.headerMenu.addContents([this.navigation.element, this.garageControls.element, this.raceControls.element]);
@@ -82,8 +88,6 @@ export class Garage extends BaseComponent {
       const carColor: HTMLInputElement | null = document.querySelector('#colorpicker-create');
       if (carName && carColor) {
         if (carName.value === '') return;
-        // console.log(carName.value);
-        // console.log(carColor.value);
         createCar({ name: carName.value, color: carColor.value });
       }
     });
@@ -91,6 +95,7 @@ export class Garage extends BaseComponent {
     this.updateCarButton = this.updateCar.getButton();
     this.updateCarButton.element.addEventListener('click', (e) => {
       e.preventDefault();
+      // TODO
       // console.log('update in garage');
     });
     this.garageControls.addTriforces([this.createCar, this.updateCar]);
