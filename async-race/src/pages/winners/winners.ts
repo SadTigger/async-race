@@ -20,7 +20,7 @@ export class Winners extends BaseComponent {
   winnersList: WinnersModel | undefined;
 
   constructor(cars: Promise<Car[]>) {
-    super();
+    super('div', ['winners-view']);
     this.page = new Page();
     this.winnersTemplate = new WinnersTemplate('Winners', 3);
     this.winnersContainer = new WinnersContainer();
