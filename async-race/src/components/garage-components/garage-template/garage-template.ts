@@ -1,21 +1,30 @@
+import { GarageModel } from '../../../models/garage-model';
 import { BaseComponent } from '../../base-component';
 import { RacesContainer } from '../../race-components/races-container/races-container';
 import './garage-template.css';
 
 export class GarageTemplate extends BaseComponent {
-  constructor(text = 'Garage', numberOfCars: number) {
+  constructor() {
     super('div', ['garage-template']);
-    this.element.innerHTML += GarageTemplate.getTitle(text, numberOfCars);
-    this.element.innerHTML += GarageTemplate.getPageNumber(1);
+    // this.element.innerHTML += GarageTemplate.getPageNumber(1);
   }
 
-  static getTitle(text = 'Garage', numberOfCars: number): string {
-    return `<span class="view-title">${text} (${numberOfCars})</span>`;
+  async addTitle(text = 'Garage', garage: Promise<GarageModel>): Promise<void> {
+    const template = (await garage).count;
+    this.element.appendChild(GarageTemplate.getViewTitleElement(text, template));
   }
 
-  static getPageNumber(pageNumber: number): string {
-    return `<span class="pagination">Page #${pageNumber}</span>`;
+  static getViewTitleElement(text: string, template: string | null): HTMLElement {
+    const span = document.createElement('span');
+    span.innerHTML = `${text} (${template})`;
+    span.classList.add('view-title');
+    return span;
   }
+
+  // TODO
+  // static getPageNumber(pageNumber: number): string {
+  //   return `<span class="pagination">Page #${pageNumber}</span>`;
+  // }
 
   addRaceContainer(container: RacesContainer): void {
     this.element.appendChild(container.element);

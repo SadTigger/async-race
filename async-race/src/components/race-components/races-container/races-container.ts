@@ -1,22 +1,28 @@
-// import { deleteCar } from '../../../api';
+import { CarModel } from '../../../models/car-model';
+import { GarageModel } from '../../../models/garage-model';
 import { BaseComponent } from '../../base-component';
 import { Race } from '../race/race';
 import './races-container.css';
 
-// const DECIMAL_RADIX = 10;
-// const THE_ONE = 1;
 export class RacesContainer extends BaseComponent {
+  hangar: Race[] = [];
+
   constructor() {
     super('div', ['races-container']);
   }
 
-  async addRaces(races: Promise<Race[]>[]): Promise<void> {
-    races.forEach(async (race) => (await race).forEach(async (r) => this.element.appendChild(r.element)));
+  async addRaces(garage: Promise<GarageModel>): Promise<void> {
+    const promises: CarModel[] = [];
+    (await garage).items.forEach((car) => promises.push(car));
+    const temp: CarModel[] = await Promise.all(promises);
+    temp.forEach((item) => {
+      const raceItem = new Race(item);
+      this.hangar.push(raceItem);
+    });
+    this.hangar.forEach((race) => this.element.appendChild(race.element));
   }
 
-  // removeRace(id: number): void {
-  //   deleteCar(id);
-  //   const parentNode = this.element;
-  //   parentNode.removeChild(parentNode.childNodes[id + THE_ONE]);
-  // }
+  getRaces(): Race[] {
+    return this.hangar;
+  }
 }

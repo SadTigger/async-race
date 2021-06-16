@@ -9,7 +9,7 @@ import { Car } from '../../components/car-components/car/car';
 import { GarageControls } from '../../components/garage-components/garage-controls/garage-controls';
 import { RaceControls } from '../../components/race-components/race-controls/race-controls';
 import { RacesContainer } from '../../components/race-components/races-container/races-container';
-import { Race } from '../../components/race-components/race/race';
+// import { Race } from '../../components/race-components/race/race';
 import { HeaderMenu } from '../../components/header-components/header-menu/header-menu';
 import { Navigation } from '../../components/header-components/navigation/navigation';
 import { getCars } from '../../api';
@@ -43,11 +43,13 @@ export class Garage extends BaseComponent {
 
   private readonly raceContainer: RacesContainer;
 
-  private readonly races: Promise<Race[]>[] = [];
+  // private readonly races: Promise<GarageModel>;
 
   private car!: CarModel;
 
   allCars: GarageModel | undefined;
+
+  garage: Promise<GarageModel>;
 
   constructor() {
     super();
@@ -56,16 +58,15 @@ export class Garage extends BaseComponent {
     this.navigation = new Navigation();
     this.garageControls = new GarageControls();
     this.raceControls = new RaceControls();
-    this.garageTemplate = new GarageTemplate('Garage', 4);
+    this.garage = this.getAllCars();
+    this.garageTemplate = new GarageTemplate();
+    this.garageTemplate.addTitle('Garage', this.garage);
     this.raceContainer = new RacesContainer();
     this.garageTemplate.addRaceContainer(this.raceContainer);
-    const garage = this.getCarToRace();
-    this.races.push(garage);
-    this.raceContainer.addRaces(this.races);
+    this.raceContainer.addRaces(this.garage);
     this.toGarageButton = new Button('to garage', 'navigation-button');
     this.toWinnersButton = new Button('to winners', 'navigation-button');
     this.raceButton = new Button('race', 'race-control-button');
-    // this.raceButton.element.addEventListener('click', () => console.log('click'));
     this.resetButton = new Button('reset', 'race-control-button');
     this.generateCarsButton = new Button('generate cars', 'generate-button');
     this.element.appendChild(this.page.element);
@@ -80,21 +81,8 @@ export class Garage extends BaseComponent {
 
   async getCarsToWinners(): Promise<Car[]> {
     const cars: Car[] = [];
-    (await this.races[0]).forEach(async (race) => cars.push(race.getCar()));
+    this.raceContainer.getRaces().forEach((race) => cars.push(race.getCar()));
     return cars;
-  }
-
-  async getCarToRace(): Promise<Race[]> { //
-    const hangar: Race[] = [];
-    const garage = this.getAllCars();
-    const promises: CarModel[] = [];
-    (await garage).items.forEach((car) => promises.push(car));
-    const temp: CarModel[] = await Promise.all(promises);
-    temp.forEach((item) => {
-      const raceItem = new Race(item);
-      hangar.push(raceItem);
-    });
-    return hangar;
   }
 
   async getAllCars(): Promise<GarageModel> {
