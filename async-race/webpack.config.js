@@ -45,6 +45,10 @@ module.exports = ({ develop }) => ({
         test: /\.css$/i,
         use: [MiniCssExtractPlugin.loader, 'css-loader']
       },
+      {
+        test: /\.(mp3|wav|mpe?g|ogg)$/i,
+        use: 'file-loader'
+      },
     ],
   },
   resolve: {

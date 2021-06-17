@@ -20,7 +20,7 @@ export class Race extends BaseComponent {
     this.element.appendChild(this.raceHeader.element);
     this.element.appendChild(this.carControls.element);
     this.element.appendChild(this.car.element);
-    this.carControls.addTemplate();
+    this.carControls.addTemplate(id);
   }
 
   getCar(): Car {

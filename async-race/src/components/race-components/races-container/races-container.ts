@@ -16,7 +16,7 @@ export class RacesContainer extends BaseComponent {
     (await garage).items.forEach((car) => promises.push(car));
     const temp: CarModel[] = await Promise.all(promises);
     temp.forEach((item, index) => {
-      const raceItem = new Race(item, `${index}`);
+      const raceItem = new Race(item, `${index + 1}`);
       this.hangar.push(raceItem);
     });
     this.hangar.forEach((race) => this.element.appendChild(race.element));
