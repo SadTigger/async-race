@@ -15,42 +15,46 @@ export class Winners extends BaseComponent {
 
   private readonly winnersContainer: WinnersContainer;
 
-  private readonly winners: Promise<Winner[]>[] = [];
+  // private readonly winners: Promise<Winner[]>[] = [];
+  
+  private winners: Promise<WinnersModel>;
 
   winnersList: WinnersModel | undefined;
 
   constructor(cars: Promise<Car[]>) {
     super('div', ['winners-view']);
     this.page = new Page();
-    this.winnersTemplate = new WinnersTemplate('Winners', 3);
+    this.winners = this.getAllWinners();
+    this.winnersTemplate = new WinnersTemplate();
+    this.winnersTemplate.addTitle('Winners', this.winners);
     this.winnersContainer = new WinnersContainer();
-    const chart = this.getWinnersToChart(cars);
-    this.winners.push(chart);
+    // const chart = this.getWinnersToChart(cars);
+    // this.winners.push(chart);
     this.winnersContainer.addWinners(this.winners);
     this.winnersTemplate.addWinnersContainer(this.winnersContainer);
     this.element.appendChild(this.page.element);
     this.page.addToPage([this.winnersTemplate.element]);
   }
 
-  async getWinnersToChart(cars: Promise<Car[]>): Promise<Winner[]> {
+  async getWinnersToChart(cars: Promise<Car[]>) { //: Promise<Winner[]> 
     const chart: Winner[] = [];
     const carsImages: string[] = [];
     (await cars).forEach((car) => carsImages.push(car.getImage()));
-    const view = await this.getAllWinners();
-    const winnersInChart = view.count;
-    const promises = [];
-    for (let i = 0; i < Number(winnersInChart); i++) {
-      promises.push(getCar(view.items[i].id));
-    }
-    const temp: CarModel[] = await Promise.all(promises);
-    for (let i = 0; i < temp.length; i++) {
-      const winnerItem = new Winner(view.items[i].id,
-        carsImages[i], temp[i].name,
-        view.items[i].wins,
-        view.items[i].time);
-      chart.push(winnerItem);
-    }
-    return chart;
+    // const view = await this.getAllWinners();
+    // const winnersInChart = view.count;
+    // const promises = [];
+    // for (let i = 0; i < Number(winnersInChart); i++) {
+    //   promises.push(getCar(view.items[i].id));
+    // }
+    // const temp: CarModel[] = await Promise.all(promises);
+    // for (let i = 0; i < temp.length; i++) {
+    //   const winnerItem = new Winner(view.items[i].id,
+    //     carsImages[i], temp[i].name,
+    //     view.items[i].wins,
+    //     view.items[i].time);
+    //   chart.push(winnerItem);
+    // }
+    // return chart;
   }
 
   async getAllWinners(): Promise<WinnersModel> {
