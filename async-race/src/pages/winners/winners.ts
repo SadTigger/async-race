@@ -1,11 +1,10 @@
-import { getCar, getWinners } from '../../api';
+import { getWinners } from '../../api';
 import { BaseComponent } from '../../components/base-component';
 import { Car } from '../../components/car-components/car/car';
 import { Page } from '../../components/page/page';
-import { Winner } from '../../components/winners-components/winner/winner';
+// import { Winner } from '../../components/winners-components/winner/winner';
 import { WinnersContainer } from '../../components/winners-components/winners-container/winners-container';
 import { WinnersTemplate } from '../../components/winners-components/winners-template/winners-template';
-import { CarModel } from '../../models/car-model';
 import { WinnersModel } from '../../models/winners-model';
 
 export class Winners extends BaseComponent {
@@ -16,12 +15,14 @@ export class Winners extends BaseComponent {
   private readonly winnersContainer: WinnersContainer;
 
   // private readonly winners: Promise<Winner[]>[] = [];
-  
+
   private winners: Promise<WinnersModel>;
 
   winnersList: WinnersModel | undefined;
 
-  constructor(cars: Promise<Car[]>) {
+  private carsImages: string[] = [];
+
+  constructor() { // cars: Promise<Car[]>
     super('div', ['winners-view']);
     this.page = new Page();
     this.winners = this.getAllWinners();
@@ -36,10 +37,10 @@ export class Winners extends BaseComponent {
     this.page.addToPage([this.winnersTemplate.element]);
   }
 
-  async getWinnersToChart(cars: Promise<Car[]>) { //: Promise<Winner[]> 
-    const chart: Winner[] = [];
-    const carsImages: string[] = [];
-    (await cars).forEach((car) => carsImages.push(car.getImage()));
+  async getWinnersToChart(cars: Promise<Car[]>): Promise<void> { // : Promise<Winner[]>
+    // const chart: Winner[] = [];
+    // this.carsImages: [];
+    (await cars).forEach((car) => this.carsImages.push(car.getImage()));
     // const view = await this.getAllWinners();
     // const winnersInChart = view.count;
     // const promises = [];

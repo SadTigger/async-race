@@ -43,7 +43,7 @@ export class WinnersContainer extends BaseComponent {
         winnersItems[i].time);
       chart.push(winnerItem);
     }
-    chart.forEach(winner => this.element.appendChild(winner.element));
+    chart.forEach((winner) => this.element.appendChild(winner.element));
     // return chart;
   }
 
