@@ -12,7 +12,7 @@ export class App {
   constructor(private readonly rootElement: HTMLElement) {
     this.navigation = new NavigationMenu();
     this.garage = new Garage();
-    this.winners = new Winners(this.garage.getCarsToWinners());
+    this.winners = new Winners(); // this.garage.getCarsToWinners()
   }
 
   run(): void {
